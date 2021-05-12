@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_bloc/src/blocs/auth_bloc_provider.dart';
 
 import 'src/screens/login_screem.dart';
 
@@ -14,7 +15,7 @@ class App extends StatelessWidget {
       title: "Login Bloc",
       theme: ThemeData.dark(),
       home: Scaffold(
-        body: LoginScreen(),
+        body: AuthBlocProvider(child: LoginScreen()),
       )
     );
   }

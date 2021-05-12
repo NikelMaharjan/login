@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:login_bloc/src/validators/auth_validaor.dart';
 
-class _AuthBloc with AuthValidator{
+class AuthBloc with AuthValidator{
  //broadcast for debug purpose only
  final _emailController  = StreamController<String>.broadcast(); //incoming value string, outgoing(error) value also string. so we can use String
  final _passwordController  = StreamController<String>.broadcast();
@@ -29,4 +29,4 @@ class _AuthBloc with AuthValidator{
   _genderController.close();
  }
 }
-final authBloc = _AuthBloc();  //singleton design pattern..//single global instance..//can be used everywhere
+//final authBloc = _AuthBloc();  //singleton design pattern..//single global instance..//can be used everywhere

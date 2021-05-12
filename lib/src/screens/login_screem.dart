@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:login_bloc/src/blocs/auth_bloc.dart';
+import 'package:login_bloc/src/blocs/auth_bloc_provider.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final authBloc = AuthBlocProvider.of(context);
     return Container(
       padding: EdgeInsets.all(32),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            buildEmailField(),
+            buildEmailField(authBloc),
             SizedBox(height: 16),
-            buildPasswordField(),
+            buildPasswordField(authBloc),
             SizedBox(height: 16),
-            buildGenderField(),
+            buildGenderField(authBloc),
             SizedBox(height: 16),
             buildSubmitButton(),
           ],
@@ -23,7 +25,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget buildEmailField() {
+  Widget buildEmailField(AuthBloc authBloc) {
     return StreamBuilder(
       //running app first time wont show any error since onChanged is not called
       stream: authBloc.emailStream, //listen like in dart game. rebuild evertime when value comes
@@ -41,7 +43,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget buildPasswordField() {
+  Widget buildPasswordField(AuthBloc authBloc) {
     return StreamBuilder(
         stream: authBloc.passwordStream,
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -56,7 +58,7 @@ class LoginScreen extends StatelessWidget {
         });
   }
 
-  Widget buildGenderField() {
+  Widget buildGenderField(AuthBloc authBloc) {
     return StreamBuilder(
         stream: authBloc.genderStream,
         builder: (context, AsyncSnapshot<String> snapshot) {
