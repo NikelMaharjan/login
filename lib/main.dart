@@ -15,7 +15,8 @@ class App extends StatelessWidget {
       title: "Login Bloc",
       theme: ThemeData.dark(),
       home: Scaffold(
-        body: AuthBlocProvider(child: LoginScreen()),
+        body: AuthBlocProvider(
+            child: LoginScreen()),
       )
     );
   }

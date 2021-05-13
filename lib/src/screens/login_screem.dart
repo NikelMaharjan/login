@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 16),
             buildGenderField(authBloc),
             SizedBox(height: 16),
-            buildSubmitButton(),
+            buildSubmitButton(authBloc),
           ],
         ),
       ),
@@ -38,6 +38,7 @@ class LoginScreen extends StatelessWidget {
               hintText: "abc@email.com",
               errorText: snapshot.hasError ? snapshot.error.toString() : null,
               border: OutlineInputBorder()),
+
         );
       },
     );
@@ -83,22 +84,26 @@ class LoginScreen extends StatelessWidget {
         });
   }
 
-  Widget buildSubmitButton() {
-    return StreamBuilder(
-        stream: null,
-        builder: (context, snapshot) {
+  Widget buildSubmitButton(AuthBloc authBloc) {
+      return StreamBuilder(
+        stream: authBloc.buttonStream,
+        builder: (context, AsyncSnapshot<bool> snapshot) {
           return Container(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: null,
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(16),
-                primary: Colors.teal,
-              ),
-              child: Text("Submit"),
-            ),
-          );
-        });
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed:snapshot.hasData ? (){
+
+                  } :null,
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(16),
+                    primary: Colors.teal,
+                  ),
+                  child: Text("Submit"),
+                ),
+              );
+        }
+      );
+
   }
 
 }

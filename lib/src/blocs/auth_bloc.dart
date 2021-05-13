@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:login_bloc/src/validators/auth_validaor.dart';
+import 'package:rxdart/rxdart.dart';
+
 
 class AuthBloc with AuthValidator{
  //broadcast for debug purpose only
@@ -13,7 +15,6 @@ class AuthBloc with AuthValidator{
  Function(String pass) get changePassword => _passwordController.sink.add;
  Function(String gender) get changeGender => _genderController.sink.add;
 
- //alt j to find similar words
  //stream getters  //in dart game, stream comes in default. like .add..
  Stream<String> get emailStream => _emailController.stream//return type stream //latest stream and sink will pass to transformer
      .transform(emaiValidator);
@@ -21,6 +22,11 @@ class AuthBloc with AuthValidator{
      .transform(passwordValidator);
  Stream<String> get genderStream => _genderController.stream
      .transform(genderValidator);
+
+ //todo combine 3 streams using rxDart   //StreamController do not capture data so we use RXdart subject similar to streamcontrooler but also save data
+ Stream<bool> get buttonStream => Rx.combineLatest3(emailStream, passwordStream, genderStream,
+         (a, b, c) => true);   //combine will call only if all stream have data
+
 
 
  void dispose(){  //we never call this since controller, need to listen all time. SO, just to remove error underline.
