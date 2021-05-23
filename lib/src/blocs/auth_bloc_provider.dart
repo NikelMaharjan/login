@@ -4,7 +4,7 @@ import 'auth_bloc.dart';
 class AuthBlocProvider extends InheritedWidget {
  final bloc = AuthBloc();  //authblocprovider will gives us bloc // we limit access of AuthBloc inside login screen only. it cant be use in main.dart like etc
 
- //singleton can be uesed everwhere in app. so we use scoped model, so we can only where needed
+ //singleton can be used everywhere in app. so we use scoped model, so we can only where needed
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
