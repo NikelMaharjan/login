@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_bloc/src/blocs/auth_bloc.dart';
 import 'package:login_bloc/src/blocs/auth_bloc_provider.dart';
+import 'package:login_bloc/src/screens/second_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -124,6 +125,10 @@ class LoginScreen extends StatelessWidget {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Sign up failed")));
     } else {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (_){
+            return SecondScreen();
+          }));
 
     }
   }

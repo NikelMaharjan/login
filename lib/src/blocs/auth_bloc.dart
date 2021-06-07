@@ -54,7 +54,7 @@ Future submitData() async {
  return response;
 }
 
-
+String get currentEmail => _emailController.value;
 
  void dispose(){  //we never call this since controller, need to listen all time. SO, just to remove error underline.
   _emailController.close();
